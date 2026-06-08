@@ -1,0 +1,331 @@
+/* vid.css - أنماط مشغّل فيديو عصري */
+/* صُمّم ليتكامل مع HTML/JS المرسل: .video-frame .main-video .video-overlay .controls .video-grid .video-card */
+
+:root{
+  --gold-1: #f5c542;
+  --gold-2: #d4a832;
+  --bg-1: #050509;
+  --panel: rgba(8,8,12,0.95);
+  --glass: rgba(255,255,255,0.03);
+  --muted: #cfc8ac;
+  --accent: rgba(245,197,66,0.12);
+  --radius: 20px;
+  --shadow-1: 0 20px 50px rgba(0,0,0,0.6);
+  --glass-blur: 12px;
+}
+
+/* قاعدة عامة للمشغّل داخل حاوية .video-player */
+.video-player {
+  font-family: "Tahoma", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #fff;
+  background: transparent;
+}
+
+/* الحاوية الرئيسية للفيديو */
+.video-frame {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(180deg, #08080b, #0f0f12);
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: var(--shadow-1);
+}
+
+.video-player-card.hidden {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateY(-20px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+
+/* تأثير زجاجي خفيف فوق الفيديو */
+.video-frame::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+  mix-blend-mode: overlay;
+}
+
+/* عنصر الفيديو نفسه */
+.main-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+  object-fit: contain;
+  border-radius: inherit;
+}
+
+/* غلاف الفيديو poster يظهر تلقائياً عبر attribute poster في <video> */
+
+/* شريط التراكب العلوي (badge + title) */
+.video-overlay {
+  position: absolute;
+  left: 24px;
+  top: 18px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+.video-overlay-badge {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(245,197,66,0.12);
+  color: var(--gold-1);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  border: 1px solid rgba(245,197,66,0.22);
+  backdrop-filter: blur(6px);
+}
+
+/* عنوان صغير فوق الفيديو */
+.video-overlay-title {
+  pointer-events: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  text-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+/* لوحة التحكم السفلية فوق الفيديو */
+.video-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.45));
+  backdrop-filter: blur(6px);
+}
+
+/* مجموعة الأزرار اليسرى */
+.controls-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  pointer-events: auto;
+}
+
+/* مجموعة الأزرار اليمنى */
+.controls-right {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  pointer-events: auto;
+}
+
+/* أزرار التحكم العامة */
+.v-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(17,17,17,0.6);
+  color: var(--gold-1);
+  border: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  font-weight: 700;
+  font-size: 16px;
+}
+.v-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.v-btn.active { background: linear-gradient(180deg,var(--gold-1),var(--gold-2)); color: #000; border-color: rgba(0,0,0,0.12); }
+
+/* زر التشغيل أكبر */
+.play-btn {
+  min-width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  font-size: 20px;
+  padding: 0 12px;
+  background: linear-gradient(180deg,var(--gold-1),var(--gold-2));
+  color: #000;
+  box-shadow: 0 12px 40px rgba(245,197,66,0.12);
+}
+
+/* شريط التقدم */
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0 8px;
+  pointer-events: auto;
+}
+
+/* الوقت الحالي والمدة */
+.time {
+  font-size: 13px;
+  color: var(--muted);
+  min-width: 48px;
+  text-align: center;
+}
+
+/* شريط التقدم المخصص */
+.progress {
+  --progress: 0%;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+}
+.progress::-webkit-slider-runnable-track { height: 8px; background: transparent; }
+.progress::-moz-range-track { height: 8px; background: transparent; }
+
+.progress::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: var(--progress);
+  background: linear-gradient(90deg, rgba(245,197,66,0.95), rgba(212,168,50,0.9));
+  border-radius: inherit;
+  z-index: 0;
+  transition: width .12s linear;
+  pointer-events: none;
+}
+
+/* مؤشر التقدم */
+.progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold-1);
+  border: 3px solid rgba(0,0,0,0.35);
+  margin-top: -5px;
+  box-shadow: 0 8px 20px rgba(245,197,66,0.12);
+}
+.progress::-moz-range-thumb {
+  width: 18px; height: 18px; border-radius: 50%; background: var(--gold-1); border: 3px solid rgba(0,0,0,0.35);
+}
+
+/* شريط التقدم الملون (خلفية متدرجة) */
+.progress::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(245,197,66,0.95), rgba(212,168,50,0.9));
+  border-radius: inherit;
+  z-index: 0;
+  transition: width .12s linear;
+  pointer-events: none;
+}
+
+/* عند السحب نزيد التوهّج */
+.progress:active::-webkit-slider-thumb { transform: scale(1.06); box-shadow: 0 12px 30px rgba(245,197,66,0.18); }
+
+/* شريط السرعة الصغير */
+.speed-indicator {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* وضع السينما */
+.cinema-mode {
+  background: rgba(0,0,0,0.95);
+}
+.cinema-mode header,
+.cinema-mode footer {
+  opacity: 0.08 !important;
+  pointer-events: none !important;
+  transition: opacity .3s ease;
+}
+
+/* لوحة الفيديو الجانبية والقائمة */
+.video-details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px 4px;
+}
+
+/* عنوان الفيديو داخل اللوحة الجانبية */
+.video-header { display: flex; flex-direction: column; gap: 6px; pointer-events: auto; }
+.video-label { font-size: 12px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+#videoTitle { font-size: 22px; color: var(--gold-1); margin: 0; line-height: 1.05; }
+#videoDescription { color: #e6dcc0; font-size: 14px; margin: 0; }
+
+/* شبكة الفيديوهات المصغّرة */
+.video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 6px; }
+.video-card {
+  background: rgba(8,8,12,0.9);
+  border: 1px solid rgba(245,197,66,0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  display: flex;
+  flex-direction: column;
+}
+.video-card img { width: 100%; height: auto !important; object-fit: contain; display: block; }
+.video-card .card-body { padding: 12px 14px; }
+.video-card h4 { margin: 0; font-size: 16px; color: var(--gold-1); }
+.video-card p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
+.video-card:hover { transform: translateY(-8px); box-shadow: 0 26px 60px rgba(245,197,66,0.12); border-color: rgba(245,197,66,0.18); }
+.video-card.active { border-color: rgba(245,197,66,0.28); box-shadow: 0 30px 80px rgba(245,197,66,0.2); }
+
+/* إشعارات صغيرة (toast) */
+#playerToast {
+  transition: opacity .25s ease;
+  opacity: 0;
+}
+
+/* استجابة */
+@media (max-width: 1000px) {
+  .video-player .video-player-card { grid-template-columns: 1fr; }
+  .video-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .video-card img { height: auto; }
+  .video-overlay { left: 14px; top: 12px; }
+  .video-controls { padding: 10px 12px; }
+}
+
+@media (max-width: 600px) {
+  .video-overlay-title { font-size: 16px; }
+  .video-controls { gap: 8px; padding: 8px; }
+  .play-btn { min-width: 48px; height: 48px; }
+  .progress { height: 6px; }
+  .progress::-webkit-slider-thumb { width: 14px; height: 14px; margin-top: -4px; }
+  .video-card img { height: auto; }
+}
+
+/* تحسينات مرئية إضافية */
+.video-frame.loading::after {
+  content: "جارٍ التحميل...";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.7);
+  font-weight: 700;
+  z-index: 60;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45));
+}

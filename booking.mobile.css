@@ -1,0 +1,7 @@
+/* booking.mobile.css - Mobile overrides for booking page */
+@media (max-width: 720px) {
+  .booking-hero { padding: 12px; }
+  .booking-intro h1 { font-size:20px; }
+  .concerts-grid { grid-template-columns: repeat(1, 1fr); gap:12px; }
+  .concert-card .concert-cover { height:180px; }
+}

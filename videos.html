@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>الفيديوهات - ليال عبود</title>
+
+  <!-- أنماط الموقع العامة -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.mobile.css" media="(max-width:720px)">
+  <script src="mobile-redirect.js" defer></script>
+
+  <!-- أنماط المشغّل العصري (خاص) -->
+  <link rel="stylesheet" href="vid.css">
+  <link rel="stylesheet" href="vid.mobile.css" media="(max-width:720px)">
+
+  <!-- سكربت المشغّل (يُحمّل بعد تحميل DOM) -->
+  <script src="video-player.js" defer></script>
+</head>
+
+<body>
+  <header class="mobile-nav-enabled">
+    <div class="header-row">
+      <div class="logo">LAYAL ABOUD</div>
+      <div class="mobile-header-tools">
+        <span class="mobile-page-title">الفيديوهات</span>
+        <button class="mobile-menu-toggle" aria-expanded="false" aria-label="فتح القائمة">◀</button>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="bio.html">السيرة</a>
+      <a href="events.html">الحفلات</a>
+      <a href="gallery.html">الصور</a>
+      <a href="videos.html">الفيديوهات</a>
+      <a href="music.html">الأغاني</a>
+      <a href="news.html">اهم الاخبار</a>
+      <a href="booking.html">احجز حفلة</a>
+      <a href="contact.html">الحجوزات</a>
+    </nav>
+  </header>
+
+  <section class="section video-player-section">
+    <h2>الفيديوهات الرسمية</h2>
+
+    <!-- حاوية المشغّل (بادئة .video-player لعزل الأنماط) -->
+    <div class="video-player">
+
+      <div id="videoPlayerCard" class="video-player-card hidden">
+        <!-- إطار الفيديو -->
+        <div class="video-frame">
+          <!-- عنصر الفيديو (لا نضع controls هنا لأننا نستخدم تحكمات مخصصة) -->
+          <video id="mainVideo" class="main-video" preload="metadata" poster="images/OIP.png">
+            متصفحك لا يدعم تشغيل الفيديو.
+          </video>
+
+          <!-- تراكب العنوان / بادج -->
+          <div class="video-overlay">
+            <span class="video-overlay-badge">حصرية</span>
+            <div class="video-overlay-title" id="videoOverlayTitle">شاهد الآن</div>
+          </div>
+
+          <!-- تحكمات مخصصة فوق الفيديو -->
+          <div class="video-controls" role="toolbar" aria-label="عناصر تحكم الفيديو">
+            <div class="controls-left">
+              <button id="playBtn" class="v-btn play-btn" aria-label="تشغيل">▶</button>
+              <button id="muteBtn" class="v-btn" aria-pressed="false" aria-label="كتم">🔊</button>
+              <button id="skipBackward" class="v-btn" aria-label="تخطي للخلف 10 ثواني">⏪10</button>
+              <button id="skipForward" class="v-btn" aria-label="تخطي للأمام 10 ثواني">10⏩</button>
+            </div>
+
+            <div class="progress-wrap" aria-hidden="false">
+              <div class="time" id="currentTime">0:00</div>
+              <input id="progressBar" class="progress" type="range" min="0" max="100" value="0" step="0.01" aria-label="شريط التقدم">
+              <div class="time" id="duration">0:00</div>
+            </div>
+
+            <div class="controls-right">
+              <button id="speedBtn" class="v-btn" aria-label="سرعة التشغيل">1x</button>
+              <button id="cinemaBtn" class="v-btn" aria-pressed="false" aria-label="وضع السينما">🎬</button>
+              <button id="fullscreenBtn" class="v-btn" aria-label="ملء الشاشة">⛶</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- تفاصيل الفيديو على اليمين -->
+        <div class="video-details">
+          <div class="video-header">
+            <span class="video-label">أبرز فيديو</span>
+            <h3 id="videoTitle">قلبك معي</h3>
+          </div>
+          <p id="videoDescription">شاهدي أحدث فيديو كليب رسمي لليال عبود مع تفاصيل عن العرض الفني والمشاهد الخاصة.</p>
+
+          <div class="video-meta-chips">
+            <span>كليب رسمي</span>
+            <span>03:45</span>
+            <span>2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- شبكة الفيديوهات المصغّرة (سيملأها video-player.js) -->
+      <div id="videoList" class="video-grid" aria-label="قائمة الفيديوهات"></div>
+    </div>
+  </section>
+
+  <footer>© موقع تجريبي غير رسمي</footer>
+  <script src="mobile-nav.js" defer></script>
+</body>
+</html>

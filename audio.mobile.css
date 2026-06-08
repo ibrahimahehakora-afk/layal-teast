@@ -1,0 +1,31 @@
+/* audio.mobile.css -Overrides for small screens */
+
+@media (max-width: 720px) {
+  .player-card { padding:12px; gap:12px; }
+  .player-left, .player-right { width:100%; }
+  .player-cover { width:100%; max-height:36vh; object-fit:cover; border-radius:8px; }
+
+  /* Very small square control buttons */
+  .controls { display:flex; gap:8px; align-items:center; }
+  .control-btn { width:40px; height:40px; padding:0; font-size:16px; border-radius:8px; }
+  .control-btn.play { width:56px; height:40px; font-weight:700; }
+  .small-btn { width:40px; height:40px; padding:0; }
+
+  /* Make progress compact */
+  #progress { height:6px; }
+  #progress::-webkit-slider-thumb { width:14px; height:14px; margin-top:-4px; }
+
+  /* Up-next prominence: stick to bottom when scrolling */
+  .up-next { display:block; background:linear-gradient(180deg, rgba(11,11,11,0.96), rgba(11,11,11,0.98)); padding:8px; border-radius:8px; }
+  .upnext-list { max-height:180px; overflow:auto; }
+
+  /* When body has playlist-only, hide heavy player parts */
+  body.playlist-only .player-card .player-left,
+  body.playlist-only .player-card .track-info,
+  body.playlist-only .player-card .controls,
+  body.playlist-only .player-card .progress-wrap,
+  body.playlist-only .player-card .extra-controls {
+    display:none !important;
+  }
+  body.playlist-only .up-next { position:fixed; left:10px; right:10px; bottom:12px; z-index:2200; }
+}

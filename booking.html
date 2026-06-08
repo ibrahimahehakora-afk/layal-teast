@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>احجز حفلة - ليال عبود</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.mobile.css" media="(max-width:720px)">
+  <script src="mobile-redirect.js" defer></script>
+  <link rel="stylesheet" href="booking.css">
+  <link rel="stylesheet" href="booking.mobile.css" media="(max-width:720px)">
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="booking.js" defer></script>
+</head>
+<body>
+<header class="mobile-nav-enabled">
+    <div class="header-row">
+        <div class="logo">LAYAL ABOUD</div>
+        <div class="mobile-header-tools">
+            <span class="mobile-page-title">احجز حفلة</span>
+            <button class="mobile-menu-toggle" aria-expanded="false" aria-label="فتح القائمة">◀</button>
+        </div>
+    </div>
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="bio.html">السيرة</a>
+        <a href="events.html">الحفلات</a>
+        <a href="gallery.html">الصور</a>
+        <a href="videos.html">الفيديوهات</a>
+        <a href="music.html">الأغاني</a>
+        <a href="news.html">اهم الاخبار</a>
+        <a href="booking.html" class="active">احجز حفلة</a>
+        <a href="contact.html">الحجوزات</a>
+    </nav>
+</header>
+
+<section class="section booking-hero">
+  <div class="booking-intro">
+    <span class="eyebrow">احجز الآن</span>
+    <h1>حجز حفلة ليال عبود</h1>
+    <p>نظم تجربة حفلة متكاملة مع خيارات دفع آمنة تشمل فيزا، ماستركارد وApple Pay. الحجز هنا مصمم ليكون مرتب وسريع ويعطيك تفاصيل واضحة قبل الدفع.</p>
+    <a href="#bookingForm" class="btn">ابدأ الحجز</a>
+  </div>
+  <div class="booking-hero-card">
+    <div>
+      <h3>باقة الحفل المثالية</h3>
+      <p>عرض للحجز المباشر للمهرجانات والمناسبات الخاصة مع باقات مُعدة خصيصاً.</p>
+    </div>
+    <div class="feature-row">
+      <strong>26+</strong>
+      <span>حفلة في 2026</span>
+    </div>
+    <div class="feature-row">
+      <strong>100%</strong>
+      <span>تجربة دفع آمنة</span>
+    </div>
+  </div>
+</section>
+
+<section class="section booking-concerts">
+  <div class="concerts-header">
+    <h2>اختر الحفلة</h2>
+    <p>اختر من بين حفلاتنا القادمة في مدن مختلفة</p>
+  </div>
+  
+  <div class="concerts-grid">
+    <div class="concert-card" data-event-id="dubai" data-date="12 يونيو 2026">
+      <div class="concert-cover">
+        <div style="width:100%; padding-bottom:56.25%; background: linear-gradient(135deg, #f5c542 0%, #d4a73b 100%); position:relative; display:flex; align-items:center; justify-content:center; font-size:4rem;">🎤</div>
+        <div class="concert-overlay">
+          <button type="button" class="select-concert">اختر هذه الحفلة</button>
+        </div>
+      </div>
+      <div class="concert-info">
+        <h3>حفلة في دبي</h3>
+        <p class="concert-date">12 يونيو 2026</p>
+        <p class="concert-location">📍 دبي، الإمارات</p>
+      </div>
+    </div>
+
+    <div class="concert-card" data-event-id="beirut" data-date="27 يوليو 2026">
+      <div class="concert-cover">
+        <div style="width:100%; padding-bottom:56.25%; background: linear-gradient(135deg, #ff6b6b 0%, #cc5555 100%); position:relative; display:flex; align-items:center; justify-content:center; font-size:4rem;">🎭</div>
+        <div class="concert-overlay">
+          <button type="button" class="select-concert">اختر هذه الحفلة</button>
+        </div>
+      </div>
+      <div class="concert-info">
+        <h3>حفلة في بيروت</h3>
+        <p class="concert-date">27 يوليو 2026</p>
+        <p class="concert-location">📍 بيروت، لبنان</p>
+      </div>
+    </div>
+
+    <div class="concert-card" data-event-id="riyadh" data-date="3 سبتمبر 2026">
+      <div class="concert-cover">
+        <div style="width:100%; padding-bottom:56.25%; background: linear-gradient(135deg, #4ecdc4 0%, #3fb5a3 100%); position:relative; display:flex; align-items:center; justify-content:center; font-size:4rem;">✨</div>
+        <div class="concert-overlay">
+          <button type="button" class="select-concert">اختر هذه الحفلة</button>
+        </div>
+      </div>
+      <div class="concert-info">
+        <h3>حفلة في الرياض</h3>
+        <p class="concert-date">3 سبتمبر 2026</p>
+        <p class="concert-location">📍 الرياض، السعودية</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section booking-main" id="bookingSection" style="display: none;">
+  <button type="button" class="btn-change-event" onclick="document.getElementById('bookingSection').style.display='none'; window.scrollTo({top:0, behavior:'smooth'});">← اختر حفلة أخرى</button>
+  <div class="booking-grid">
+    <div class="booking-card">
+      <h2>تفاصيل الحجز</h2>
+      <form id="bookingForm">
+        <div id="step-1" class="form-step">
+          <div class="selected-concert-info">
+            <p>الحفلة المختارة: <strong id="selectedConcertName"></strong></p>
+          </div>
+          <div class="field-group">
+            <label for="fullName">الاسم الكامل</label>
+            <input type="text" id="fullName" name="fullName" placeholder="اكتب اسمك" required>
+          </div>
+          <div class="field-group">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+          </div>
+          <div class="field-group">
+            <label for="phone">رقم الهاتف</label>
+            <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx" required>
+          </div>
+          <div class="field-group">
+            <label for="eventDate">تاريخ الحفل</label>
+            <input type="text" id="eventDate" name="eventDate" value="اختر الحفل أولاً" readonly required>
+            <span class="field-note">التاريخ والمدينة محددين مسبقاً من قبل الفنانة.</span>
+          </div>
+          <div class="field-group">
+            <label for="venue">مكان الحفل</label>
+            <input type="text" id="venue" name="venue" placeholder="مثلاً: صالة المؤتمرات" required>
+          </div>
+          <div class="field-group">
+            <label for="guests">عدد الحضور المتوقع</label>
+            <input type="number" id="guests" name="guests" placeholder="مثلاً 500" min="2" required>
+            <span class="field-note">الحد الأدنى هو 2 حضور، لا يمكن اختيار 1.</span>
+          </div>
+          <div class="field-group">
+            <label for="package">اختر باقة الحفل</label>
+            <select id="package" name="package" required>
+              <option value="basic">باقة أساسية</option>
+              <option value="standard">باقة قياسية</option>
+              <option value="premium">باقة المميزة</option>
+            </select>
+          </div>
+          <button type="button" id="nextStep" class="btn">التالي</button>
+        </div>
+
+        <div id="step-2" class="form-step hidden">
+          <div class="payment-section">
+          <h3>Stripe للدفع</h3>
+          <p class="stripe-note">بعد الضغط على زر الدفع، سيتم تحويلك إلى Stripe لإتمام الدفع الآمن.</p>
+          <div class="payment-methods">
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="visa" checked>
+              <span>فيزا</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="mastercard">
+              <span>ماستركارد</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="paymentMethod" value="applepay">
+              <span>Apple Pay</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="cardFields" class="card-fields" style="display:none;">
+          <div class="field-group">
+            <label for="cardNumber">رقم البطاقة</label>
+            <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric" placeholder="1234 5678 9012 3456">
+          </div>
+          <div class="field-row">
+            <div class="field-group small">
+              <label for="expiry">تاريخ الانتهاء</label>
+              <input type="text" id="expiry" name="expiry" placeholder="MM/YY">
+            </div>
+            <div class="field-group small">
+              <label for="cvc">CVC</label>
+              <input type="text" id="cvc" name="cvc" inputmode="numeric" placeholder="123">
+            </div>
+          </div>
+        </div>
+
+        <div class="hint-box">
+          <strong>ملاحظة:</strong> سيتم توجيهك إلى Stripe للدفع الآمن. تحتاج إعداد خادم خلفي لإنشاء جلسة Checkout فعلاً.
+        </div>
+
+        <div class="step-buttons">
+          <button type="button" id="backStep" class="btn secondary">الرجوع</button>
+          <button type="submit" class="btn">دفع عبر Stripe</button>
+        </div>
+        <div id="bookingStatus" class="booking-status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <aside class="booking-sidebar">
+      <div class="booking-info-card">
+        <h3>ماذا ستحصل عليه</h3>
+        <ul>
+          <li>استشارة تنظيم الحفل</li>
+          <li>تأكيد الحضور الرسمي</li>
+          <li>تقرير كامل قبل الفعالية</li>
+          <li>دفع آمن وخيارات متعددة</li>
+        </ul>
+      </div>
+
+      <div class="booking-info-card payment-cards">
+        <h3>طرق الدفع المدعومة</h3>
+        <div class="method-list">
+          <div class="method-item">Visa</div>
+          <div class="method-item">MasterCard</div>
+          <div class="method-item">Apple Pay</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<footer>© موقع تجريبي غير رسمي</footer>
+<script src="mobile-nav.js" defer></script>
+</body>
+</html>

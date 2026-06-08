@@ -1,0 +1,36 @@
+/* style.mobile.css - تغييرات خاصة بالجوال */
+
+@media (max-width: 720px) {
+  /* Header and mobile menu button */
+  header.mobile-nav-enabled .header-row { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; }
+  .mobile-header-tools { display:flex; align-items:center; gap:8px; }
+  .mobile-page-title { font-size:16px; color:#fff; font-weight:700; }
+  .mobile-menu-toggle {
+    background:#fff;
+    color:#000;
+    width:44px;
+    height:44px;
+    border-radius:8px;
+    border: none;
+    box-shadow:0 6px 18px rgba(0,0,0,0.18);
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    order:-1; /* حاول الظهور قبل المحتويات الأخرى */
+  }
+  header.mobile-nav-enabled nav { display:none; }
+  nav.open { display:block; animation: slideDown .28s ease-out; }
+
+  /* Ensure images and videos scale nicely */
+  img, video { max-width:100%; height:auto; display:block; }
+
+  /* Tighter spacing for sections */
+  .section { padding: 12px; }
+  .hero { padding: 36px 12px; }
+  .hero-title { font-size:22px; }
+  .btn { padding:10px 14px; font-size:15px; }
+
+  /* Make site body larger-touch-friendly */
+  a { padding:8px 6px; }
+}

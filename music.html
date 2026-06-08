@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الأغاني - ليال عبود</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.mobile.css" media="(max-width:720px)">
+  <script src="mobile-redirect.js" defer></script>
+  <link rel="stylesheet" href="audio.css">
+  <link rel="stylesheet" href="audio.mobile.css" media="(max-width:720px)">
+</head>
+<body>
+
+<header class="mobile-nav-enabled">
+  <div class="header-row">
+    <div class="logo">LAYAL ABOUD</div>
+    <div class="mobile-header-tools">
+      <span class="mobile-page-title">الأغاني</span>
+      <button class="mobile-menu-toggle" aria-expanded="false" aria-label="فتح القائمة">◀</button>
+    </div>
+  </div>
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="bio.html">السيرة</a>
+    <a href="events.html">الحفلات</a>
+    <a href="gallery.html">الصور</a>
+    <a href="videos.html">الفيديوهات</a>
+    <a href="music.html">الأغاني</a>
+    <a href="news.html">اهم الاخبار</a>
+    <a href="booking.html">احجز حفلة</a>
+    <a href="contact.html">الحجوزات</a>
+  </nav>
+</header>
+
+<section class="section">
+  <h2>الأغاني</h2>
+
+  <!-- شبكة الأغلفة فقط (الصفحة الرئيسية) -->
+  <div class="covers-grid" id="coversGrid"></div>
+
+</section>
+
+<!-- Modal المشغل (يُفتح عند الضغط على غلاف) -->
+<script src="mobile-nav.js" defer></script>
+<div id="playerModal" class="player-modal hidden" aria-hidden="true">
+  <div class="player-modal-inner">
+    <div class="player-modal-header">
+      <button id="closeModal" class="close-btn" aria-label="إغلاق">✕</button>
+    </div>
+
+    <div class="player-card modal-player">
+      <div class="player-left">
+        <img id="modalCover" src="images/اساسي.png" alt="غلاف" class="player-cover">
+      </div>
+
+      <div class="player-right">
+        <div class="track-info">
+          <div id="modalTitle" class="track-title">اسم الأغنية</div>
+          <div id="modalArtist" class="track-artist">اسم الفنانة</div>
+        </div>
+
+        <div class="controls">
+          <button id="prevBtn" class="control-btn">⏮</button>
+          <button id="restartBtn" class="control-btn">↻</button>
+          <button id="playBtn" class="control-btn play">▶</button>
+          <button id="nextBtn" class="control-btn">⏭</button>
+        </div>
+
+        <div class="progress-wrap">
+          <span id="currentTime">0:00</span>
+          <input type="range" id="progress" value="0" min="0" max="100">
+          <span id="duration">0:00</span>
+        </div>
+
+        <div class="extra-controls">
+          <label class="volume">🔊
+            <input type="range" id="volume" min="0" max="1" step="0.01" value="0.9">
+          </label>
+          <button id="shuffleBtn" class="small-btn">Shuffle</button>
+          <button id="repeatBtn" class="small-btn">Repeat</button>
+        </div>
+
+        <div class="up-next">
+          <h4>التشغيل التالي</h4>
+          <div id="upNextList" class="upnext-list"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>© موقع تجريبي غير رسمي</footer>
+
+<script src="mobile-player.js" defer></script>
+<script src="audio-player.js"></script>
+</body>
+</html>

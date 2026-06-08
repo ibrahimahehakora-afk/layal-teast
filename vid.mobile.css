@@ -1,0 +1,7 @@
+/* vid.mobile.css - Mobile overrides for video pages */
+@media (max-width: 720px) {
+  .video-player-card { display:block; padding:12px; }
+  .video-frame { width:100%; }
+  .v-btn { width:42px; height:42px; padding:0; font-size:14px; }
+  .video-details { margin-top:12px; }
+}
